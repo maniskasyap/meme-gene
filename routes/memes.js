@@ -17,8 +17,8 @@ router.post('/', function(req, res) {
   });
   var payload = {
     template_id: param.memeId,
-    username: config.userName,
-    password: config.pw,
+    username: process.env.USERID,
+    password: process.env.PW,
     boxes: texts
   };
 
