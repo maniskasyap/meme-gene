@@ -2,7 +2,7 @@ import React from 'react';
 import Slider from 'react-slick';
 import { MemeItem } from './meme-item';
 
-export const MemeList = ({ memes }) => {
+export const MemeList = ({ memes, onEachClick }) => {
   var settings = {
     dots: false,
     infinite: true,
@@ -14,7 +14,14 @@ export const MemeList = ({ memes }) => {
   return (
     <div>
       <Slider {...settings}>
-        {memes && memes.map(each => <MemeItem key={each.id} {...each} />)}
+        {memes &&
+          memes.map(each => (
+            <MemeItem
+              key={each.id}
+              {...each}
+              onClick={() => onEachClick(each)}
+            />
+          ))}
       </Slider>
     </div>
   );

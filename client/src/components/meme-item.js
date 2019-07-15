@@ -1,12 +1,10 @@
 import React from 'react';
 
-export const MemeItem = item => {
+export const MemeItem = ({ url, name, onClick }) => {
   return (
-    <div>
-      <figure className="meme-slide">
-        <img src={item.url} alt={item.name} style={{width:'200px', height: '200px'}}/>
-        <figcaption>{item.name}</figcaption>
-      </figure>
-    </div>
+    <figure className="meme-slide" onClick={onClick}>
+      <img src={url} alt={name} style={{ width: '200px', height: '200px' }} />
+      <figcaption>{name}</figcaption>
+    </figure>
   );
 };

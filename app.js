@@ -1,3 +1,4 @@
+require('dotenv').config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -17,12 +18,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function(req, res, next) {
-  // res.header('Access-Control-Allow-Origin', '*');
-  var allowedOrigins = [process.env.localDev, process.env.prod];
-  var origin = req.headers.origin;
-  if (allowedOrigins.indexOf(origin) > -1) {
-    res.setHeader('Access-Control-Allow-Origin', origin);
-  }
+  res.header('Access-Control-Allow-Origin', '*');
+  // var allowedOrigins = [process.env.localDev, process.env.prod];
+  // var origin = req.headers.origin;
+  // if (allowedOrigins.indexOf(origin) > -1) {
+  //   res.setHeader('Access-Control-Allow-Origin', origin);
+  // }
   res.header(
     'Access-Control-Allow-Headers',
     'Origin, X-Requested-With, Content-Type, Accept'

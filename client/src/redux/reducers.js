@@ -34,8 +34,56 @@ function memeList(state = Memes, action) {
   }
 }
 
+const Selected = {
+  item: null
+};
+
+function selectMeme(state = Selected, action) {
+  switch (action.type) {
+    case actions.SELECT_MEME:
+      return { ...state, item: action.payload };
+    default:
+      return state;
+  }
+}
+
+const CreateMemes = {
+  inProgress: false,
+  data: null,
+  error: null
+};
+
+function createMemes(state = CreateMemes, action) {
+  switch (action.type) {
+    case actions.CREATE_MEME_START:
+      return {
+        ...state,
+        inProgress: true,
+        error: null,
+        data: null
+      };
+    case actions.CREATE_MEME_DONE:
+      return {
+        ...state,
+        inProgress: false,
+        data: action.payload
+      };
+    case actions.CREATE_MEME_ERR:
+      return {
+        ...state,
+        inProgress: false,
+        error: action.error,
+        data: null
+      };
+    default:
+      return state;
+  }
+}
+
 const memes = combineReducers({
-  memeList: memeList
+  memeList: memeList,
+  selectMeme: selectMeme,
+  createMemes: createMemes
 });
 
 export default memes;
