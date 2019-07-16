@@ -20,32 +20,34 @@ export const CaptionForm = ({ item, onHandleSubmit }) => {
     onHandleSubmit({ item: item, texts: [value1, value2, value3, value4] });
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={value1}
-        placeholder="Enter first caption..."
-        onChange={handleValue1}
-      />
-      <input
-        type="text"
-        value={value2}
-        placeholder="Enter second caption..."
-        onChange={handleValue2}
-      />
-      <input
-        type="text"
-        value={value3}
-        placeholder="Enter third caption..."
-        onChange={handleValue3}
-      />
-      <input
-        type="text"
-        value={value4}
-        placeholder="Enter fourth caption..."
-        onChange={handleValue4}
-      />
-      <input type="submit" value="Create Meme" />
+    <form className="caption-form" onSubmit={handleSubmit}>
+      <div className="f-c">
+        <input
+          type="text"
+          value={value1}
+          placeholder="Enter first caption..."
+          onChange={handleValue1}
+        />
+        <input
+          type="text"
+          value={value2}
+          placeholder="Enter second caption..."
+          onChange={handleValue2}
+        />
+        <input
+          type="text"
+          value={value3}
+          placeholder="Enter third caption..."
+          onChange={handleValue3}
+        />
+        <input
+          type="text"
+          value={value4}
+          placeholder="Enter fourth caption..."
+          onChange={handleValue4}
+        />
+      </div>
+      <input className="btn" type="submit" value="Create Meme" />
     </form>
   );
 };

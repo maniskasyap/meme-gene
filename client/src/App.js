@@ -7,8 +7,10 @@ function App() {
   return (
     <div className="App">
       <ListContainer />
-      <CreateResult />
-      <CreateForm />
+      <div className="create-container">
+        <CreateResult />
+        <CreateForm />
+      </div>
     </div>
   );
 }

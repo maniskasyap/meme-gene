@@ -5,14 +5,9 @@ export const MemeFinal = ({ item }) => {
     return null;
   }
   return (
-    <div>
-      <figure className="meme-final">
-        <img
-          src={item.url}
-          alt={item.name}
-          style={{ maxWidth: '500px' }}
-        />
-        <figcaption>{item.name}</figcaption>
+    <div className="meme-final">
+      <figure className="meme-final__fig h-100">
+        <img src={item.url} alt={item.name} />
       </figure>
     </div>
   );
