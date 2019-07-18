@@ -47,6 +47,27 @@ body {
 }
 
 .meme-slide {
+  margin: 0;
+  padding: 1em 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  &.selected {
+    border-radius: 10px;
+    background-color: beige;
+    figcaption {
+      font-weight: bold;
+    }
+  }
+  figcaption {
+    margin-top: 0.5em;
+    color: #6b6b06;
+  }
+}
+
+.meme-slide {
   margin-right: 0;
   margin-left: 0;
   display: flex;

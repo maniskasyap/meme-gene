@@ -4,7 +4,8 @@ import { selectMeme } from '../redux/actions';
 
 const mapStateToProps = state => {
   return {
-    memes: state.memeList.data
+    memes: state.memeList.data,
+    current: state.selectMeme.item
   };
 };
 
