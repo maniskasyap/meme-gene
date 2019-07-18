@@ -6,6 +6,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { memeStore } from './redux/store';
 
+// ReactDOM.render(<App />, document.getElementById('root'));
 ReactDOM.render(
   <Provider store={memeStore}>
     <App />

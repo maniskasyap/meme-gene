@@ -1,6 +1,27 @@
 import { combineReducers } from 'redux';
 import * as actions from './actions';
 
+const Loader = {
+  is: false
+};
+
+function loader(state = Loader, action) {
+  switch (action.type) {
+    case actions.LOADER_START:
+      return {
+        ...state,
+        is: true
+      };
+    case actions.LOADER_DONE:
+      return {
+        ...state,
+        is: false
+      };
+    default:
+      return state;
+  }
+}
+
 const Memes = {
   isLoading: false,
   data: null,
@@ -81,6 +102,7 @@ function createMemes(state = CreateMemes, action) {
 }
 
 const memes = combineReducers({
+  loader: loader,
   memeList: memeList,
   selectMeme: selectMeme,
   createMemes: createMemes

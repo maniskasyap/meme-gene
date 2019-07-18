@@ -8,6 +8,21 @@ export const CREATE_MEME_START = 'CREATE_MEME_START';
 export const CREATE_MEME_DONE = 'CREATE_MEME_DONE';
 export const CREATE_MEME_ERR = 'CREATE_MEME_ERR';
 
+export const LOADER_START = 'LOADER_START';
+export const LOADER_DONE = 'LOADER_DONE';
+
+export function loaderStart() {
+  return {
+    type: LOADER_START
+  };
+}
+
+export function loaderDone() {
+  return {
+    type: LOADER_DONE
+  };
+}
+
 export function loadMemesStart() {
   return {
     type: LOAD_MEMES_START
@@ -60,10 +75,12 @@ const baseUrl = 'http://localhost:5000';
 
 export function fetchMemeList(uri) {
   return async dispatch => {
+    dispatch(loaderStart());
     dispatch(loadMemesStart());
     const response = await fetch(`${baseUrl}${uri}`);
     if (!response.ok || response.status === 500) {
       dispatch(loadMemesError(response.statusText));
+      dispatch(loaderDone());
       throw new Error(response.statusText);
     } else {
       const data = await response.json();
@@ -71,6 +88,7 @@ export function fetchMemeList(uri) {
       if (memes) {
         dispatch(loadMemesDone(data.data.memes));
         dispatch(selectMeme(memes[0]));
+        dispatch(loaderDone());
       }
     }
   };
@@ -78,6 +96,7 @@ export function fetchMemeList(uri) {
 
 export function createMeme(data) {
   return async dispatch => {
+    dispatch(loaderStart());
     dispatch(createMemesStart(data));
     const fetchConfig = {
       method: 'POST',
@@ -90,11 +109,16 @@ export function createMeme(data) {
       }
     };
     const response = await fetch(`${baseUrl}/memes`, fetchConfig);
-    if (response.ok) {
+    if (!response.ok || response.status === 500) {
+      dispatch(createMemesError(response.statusText));
+      dispatch(loaderDone());
+      throw new Error(response.statusText);
+    } else {
       const meme = await response.json();
       if (meme.success) {
         dispatch(selectMeme({ ...meme.data, name: data.item.name }));
       }
+      dispatch(loaderDone());
     }
   };
 }
